@@ -1,0 +1,99 @@
+ // ----------------VARIABLES------------------------
+// preface it explaining the divs
+// im just storing these hex values in four variables called ___ and you can tell that theyre variables because theyre denoted by the dollar sign.
+//when sass is processed, it took the variables we defined and outputs normal css values in the css
+
+$primary1: #333333;
+$primary2: #FFC0CB;
+$primary3: #BADA55;
+$fontsize: 18px;
+
+header{
+  color: $primary2;
+}
+
+body{
+  color: $primary1;
+// }
+ 
+// ----------------NESTING---------------------------
+  // preface it explaining how HTML also has nesting
+  // with sass, you can follow the same visual heirarchy as you would w html, a child selector in a parent selector
+  // whats cool is that css properties that are repeated can also be grouped and nested
+
+  font: {
+    family: Helvetica, sans-serif;
+    size: $fontsize;
+    weight: bold;
+  };
+  text: {
+    align: center;
+    transform: lowercase;
+    overflow: hidden;
+  }
+}
+
+// ----------------MIXINS----------------------------
+// mixin 
+// mixins are included in the current context using the @include at-rule
+
+@mixin default{
+  font-size: $fontsize;
+  width: 100%;
+  padding: 10px;
+  color: $primary3;
+}
+
+.lorem {
+  @include default;
+}
+
+
+@mixin colored( $color){
+  color: $color;
+}
+
+.firstp {
+  @include colored( $primary2);
+}
+
+// ----------------EXTEND----------------------------// this code tells my secondp div to behave like .firstp. this helps me avoid writing multiple class names on html elements
+/*
+Unlike mixins, @extend updates style rules that contain the selector to contain the extending selectorf but mixins copy styles into the current style rule
+*/
+
+.firstp{
+  background-color: $primary3;
+}
+.secondp{
+  @extend .firstp;
+  font-style: italic;
+}
+
+// ----------------COMP, ARITH OPERATORS, FUNCTIONS--
+// ASK THEM HOW TO DO THIS
+// so this is similar to how you would write a function in ruby or python or java. im first setting a local variable called result to a value of one and creating a for loop that's gonna get me the result that i want. and of course at the end, ill return the result. can anybody tell me what they think i should set result equal to in the for loop
+
+@function pow( $base, $exponent){
+  $result: 1;
+  @for $_ from 1 through $exponent{
+    $result: $result * $base;
+  }
+  @return $result;
+}
+
+main{
+  font-size: pow( 3,3) * 1px; // font-size: 8px
+}
+
+// DONT FORGET TO PASTE THIS ^^
+
+// --- built in functions ---------------
+
+.firstp{
+  background-color: $primary2;
+}
+
+.secondp{
+  background-color: darken( $primary2, 15%);
+}
