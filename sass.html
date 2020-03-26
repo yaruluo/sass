@@ -46,9 +46,9 @@
     <p>
       Sass stands for Syntactically Awesome Stylesheets.
       <br><br>Sass is a CSS preprocessor.
-      <p style="margin-left: 1em;">Preprocessors extend CSS by adding special features like variables, nested rules, and mixins to regular CSS.</p>
-      Makes coding simpler and more efficient.
-      
+    <p style="margin-left: 1em;">Preprocessors extend CSS by adding special features like variables, nested rules, and mixins to regular CSS.</p>
+    Makes coding simpler and more efficient.
+    
     </p>
 
     <br><h2>Installing Sass</h2>
@@ -100,6 +100,7 @@
       
     </pre>
 
+    
     <br><h2>Nesting</h2>
     <p>
       Nesting is a shortcut to group selectors.
@@ -125,26 +126,149 @@
     </pre>
 
     <br><h2>Import</h2>
-    <br><h2>Mixins</h2>
-    <br><h2>Extend</h2>
-    <br><h2>Comparison and arithmetic operators</h2>
-    <br><h2>Functions</h2>
-    <br><h2>Built-in functions</h2>
+
     
-    <br><h2>More cool things/practice</h2>
+    <br><h2>Mixins</h2>
+    <p>
+      The @mixin directive lets you create a block of code that groups CSS declarations to be reused throughout the website.
+      <pre>
+	
+	@mixin default{
+    	  font-size: $fontsize;
+	  width: 100%;
+	  padding: 10px;
+	  color: $primary3;
+	}
+      </pre>
+      <br>The @include directive is used to include a mixin in a selector.
+      <pre>
+
+	p {
+	  @include default;
+	}
+      </pre>
+      The above code compiles to:
+      <pre>
+	p {
+	  font-size: 18px;
+	  width: 100%;
+	  padding: 10px;
+	  color: #BADA55;
+	}
+      </pre>
+      <br>Mixins accept arguments, so you can pass variables to a mixin.
+      <pre>
+
+	@mixin colored( $color){
+	  color: $color;
+	}
+
+	p {
+	  @include colored( $primary2);
+	}
+      </pre>
+    </p>
+    
+    <br><h2>Extend</h2>
+    <p>
+      Syntax: <code>@extend &ltselector></code>
+      <br><br>Tells Sass that one selector inherits the styles of another.
+      <br><br>The @extend directive is useful if you have almost identically styled elements that only differ in some small details.
+      <br><br>This is different from the @include directive in mixins because @extend updates style rules that contain the selector to contain the extending selectorf but mixins copy styles into the current style rule.
+      <pre>
+	
+	.first{
+	  background-color: $primary3;
+	}
+	
+	.second{
+	  @extend .firstp;
+	  font-style: italic;
+	}
+      </pre>
+      The above Sass code compiles in CSS to:
+      <pre>
+	
+	.first, .second {
+	  background-color: #FFC0CB;
+	}
+	
+	.second {
+	  background-color: #ff748c;
+	}
+      </pre>
+    
+    <br><h2>Comparison and arithmetic operators</h2>
+    <p>
+      Operators like +, -, *, /, >, <=, etc. perform standard operations in Sass.
+      <br><br>The addition operator is cool because it can also be used to concatenate strings.
+      <br><br>Division also works for variables.
+      <br><br>Note: It only works for numbers with compatible numbers.
+      <pre>
+	
+	h2{
+	  font-size: 5px + 2em; // error incompatible units
+	
+	  font-size: 5px + 2; // 7px
+	}
+      </pre>
+    </p>
+    
+    <br><h2>Functions</h2>
+    <p>
+      SASS allows for functions using the <code>@function</code> call.
+      <br><br>Functions can take parameters and output results using <code>@return</code>.
+    </p>
+    <pre>
+      
+      @function pow( $base, $exponent){
+      $result: 1;
+      @for $_ from 1 through $exponent{
+      $result: $result * $base;
+      }
+      @return $result;
+      }
+
+      main{
+      font-size: pow( 3,3) * 1px; // font-size: 8px
+      }
+    </pre>
+    <p>Sass contains many built-in modules also, like color modules, list, map, math, selector, and string.</p>
+    <pre>
+      
+      .firstp{
+      background-color: $primary2;
+      }
+
+      .secondp{
+      background-color: darken( $primary2, 15%);
+      }
+    </pre>
+
+    
+    <br><h2>Try it out yourself!</h2>
+
+    <p class="sassmeister" data-gist-id="32c00d89c1e4e728ce20161514d11f51" data-height="480" data-theme="tomorrow"><a href="https://www.sassmeister.com/gist/32c00d89c1e4e728ce20161514d11f51">Play with this gist on SassMeister.</a></p><script src="https://cdn.sassmeister.com/js/embed.js" async></script>
+    </p>
+
+    <br><h2>More practice:</h2>
+    <ol>
+      <li>Go to: https://glitch.com/edit/#!/sass-softdev?path=public/style.scss:20:39
+      <li>Toggle the “Show” dropdown to be “Next to the Code” 
+      <li>Follow along with style.scss under the public repo
+      <li>Click “Remix to edit” if you want to make your own mutable copy
+    </ol>
+    
     <br><h2>Sources</h2>
     
 
 
 
-      
+    
 
-      <br><div>
-	<iframe src="https://embed.sassmeister.com/gist/8583bc8f10cef7a28e4a#theme=tomorrow," class="sassmeister-gist" id="sm-gist-8583bc8f10cef7a28e4a" scrolling="no" frameborder="0" allowtransparency="true" height="480" style="width: 100%; overflow: hidden;"></iframe>
-      </div>
+    <br>
+    
 
-    </p>
-
-  </body>
+</body>
 
 </html>
