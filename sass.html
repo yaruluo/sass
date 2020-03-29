@@ -36,7 +36,7 @@
 	  display: grid;
 	  grid-template-columns: repeat(2, 1fr);
 	  grid-template-columns: 45% 45%;
-	  grid-gap: 5%;
+	  grid-gap: 20px;
       }
     </style>
   </head>
@@ -131,6 +131,11 @@
       <br><br>Instead of writing many lines for an element, you enclose a selector inanother selector.
       <br><br>Many CSS properties have the same prefix, and with Sass you can write them as nested properties.
     </p>
+    <div class="HTMLorCSS">
+      <p>SCSS:</p>
+      <p>CSS:</p>
+      </div>
+    <div class="HTMLorCSS">
     <pre>
       
       body{
@@ -146,14 +151,28 @@
           overflow: hidden;
         }
       }
-
     </pre>
+    <pre>
+      
+      body {
+        color: #333333;
+        font-family: Helvetica, sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        text-transform: lowercase;
+        text-overflow: hidden;
+      }
+    </pre>
+    </div>
 
     <br><h2>Import</h2>
     <p>
       The @import directive allows you to include the content of one file in another (similar to the CSS @import directive).
       <br><br>More efficient than the CSS @import because in CSS, an extra HTTP request is created each time its called but in Sass no extra call is required at runtime.
-      <pre>
+      
+      <div class="HTMLorCSS">
+	<pre>
 
 	// foundation/_code.scss
 	code{
@@ -166,6 +185,7 @@
 	// style.scss
 	@import 'foundation/code.scss'
       </pre>
+      </div>
       All the code in the code.scss file in the foundation repo is automatically included in style.scss now.
       </p>
     
@@ -216,6 +236,11 @@
       <br><br>Tells Sass that one selector inherits the styles of another.
       <br><br>The @extend directive is useful if you have almost identically styled elements that only differ in some small details.
       <br><br>This is different from the @include directive in mixins because @extend updates style rules that contain the selector to contain the extending selectorf but mixins copy styles into the current style rule.
+      <div class="HTMLorCSS">
+      <p>SCSS:</p>
+      <p>CSS:</p>
+      </div>
+    <div class="HTMLorCSS">
       <pre>
 	
 	.first{
@@ -227,7 +252,6 @@
 	  font-style: italic;
 	}
       </pre>
-      The above Sass code compiles in CSS to:
       <pre>
 	
 	.first, .second {
@@ -238,6 +262,7 @@
 	  background-color: #ff748c;
 	}
       </pre>
+      </div>
     
     <br><h2>Comparison and arithmetic operators</h2>
     <p>
