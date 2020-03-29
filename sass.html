@@ -32,6 +32,12 @@
       h2, h1{
 	  color: #E9A3C4;
       }
+      .HTMLorCSS{
+	  display: grid;
+	  grid-template-columns: repeat(2, 1fr);
+	  grid-template-columns: 45% 45%;
+	  grid-gap: 5%;
+      }
     </style>
   </head>
   
@@ -84,8 +90,14 @@
       <br><br>Variables can store all the types supported by CSS (numbers, strings, colors) and other SASS-specific values (booleans, null, maps, function references).
       <br><br>Variable declaration syntax: <code>$&ltvariable>:&ltvalue></code>
     </p>
-    <pre>
-
+    
+    <div class="HTMLorCSS">
+      <p>SCSS:</p>
+      <p>CSS:</p>
+      </div>
+    <div class="HTMLorCSS">
+      <pre>
+	
       // declaring the variables
       $primary1: #333333;
       $primary2: #FFC0CB;
@@ -100,8 +112,17 @@
         color: $primary1;
         font-size: $fontsize;
       }
-      
-    </pre>
+      </pre>
+      <pre>
+	
+	header{
+          color: #FFC0CB;
+	}
+	body{
+	  color: #333333;
+	}
+      </pre>
+    </div>
 
     
     <br><h2>Nesting</h2>
@@ -129,7 +150,24 @@
     </pre>
 
     <br><h2>Import</h2>
+    <p>
+      The @import directive allows you to include the content of one file in another (similar to the CSS @import directive).
+      <br><br>More efficient than the CSS @import because in CSS, an extra HTTP request is created each time its called but in Sass no extra call is required at runtime.
+      <pre>
 
+	// foundation/_code.scss
+	code{
+	  padding: .25em;
+	  line-height: 0;
+	}
+	</pre>
+      <pre>
+	
+	// style.scss
+	@import 'foundation/code.scss'
+      </pre>
+      All the code in the code.scss file in the foundation repo is automatically included in style.scss now.
+      </p>
     
     <br><h2>Mixins</h2>
     <p>
@@ -225,26 +263,26 @@
     <pre>
       
       @function pow( $base, $exponent){
-      $result: 1;
-      @for $_ from 1 through $exponent{
-      $result: $result * $base;
-      }
-      @return $result;
+        $result: 1;
+        @for $_ from 1 through $exponent{
+          $result: $result * $base;
+        }
+        @return $result;
       }
 
       main{
-      font-size: pow( 3,3) * 1px; // font-size: 8px
+        font-size: pow( 3,3) * 1px; // font-size: 8px
       }
     </pre>
     <p>Sass contains many built-in modules also, like color modules, list, map, math, selector, and string.</p>
     <pre>
       
       .firstp{
-      background-color: $primary2;
+        background-color: $primary2;
       }
 
       .secondp{
-      background-color: darken( $primary2, 15%);
+        background-color: darken( $primary2, 15%);
       }
     </pre>
 
